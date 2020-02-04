@@ -21,7 +21,10 @@ hostname=subprocess.check_output(['hostname']).decode("utf-8") #Local hostname
 # print(hostname)
 
 ips = subprocess.check_output(['arp', '-a']).decode("utf-8") 
-rExpression='\d+\.\d+\.\d+\.\d+\s+b8-27-eb-\w+-\w+-\w+'  #All Raspeberry pi MAC Adress start with b8-27-eb
+#rExpression='\d+\.\d+\.\d+\.\d+\s+b8-27-eb-\w+-\w+-\w+'  #All Raspeberry pi 3 MAC Adress start with b8-27-eb
+#rExpression='\d+\.\d+\.\d+\.\d+\s+dc-a6-32-\w+-\w+-\w+'  #All Raspeberry pi 4
+rExpression='\d+\.\d+\.\d+\.\d+\s+(?:dc|b8)-(?:a6|27)-(?:32|eb)-\w+-\w+-\w+'  #All Raspeberry pi 3 and 4
+
 raspberryConected= re.findall(rExpression, ips)
 
 for raspberry in raspberryConected:
